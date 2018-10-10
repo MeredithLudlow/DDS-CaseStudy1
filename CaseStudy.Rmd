@@ -1,6 +1,6 @@
 ---
-title: "Case Study"
-author: "Meredith Ludlow"
+title: "Case Study 1"
+author: "Meredith Ludlow & Kito Patterson"
 date: "October 9, 2018"
 output: 
   html_document:
@@ -12,6 +12,8 @@ Write intro here.
 I used the following R packages in the course of this analysis: plyr
 ```{r echo=TRUE}
 library(plyr)
+library(dplyr)
+library(ggplot2)
 ```
 
 First, we will look at the number of breweries in each state. After we imported the brewery data, we created a table of the number of breweries that are located in each state. The table is shown below.
@@ -38,4 +40,37 @@ For each column in the merged data set, the number of missing data points are su
 na_counts <- sapply(BrewsandBeers, function(y) sum(is.na(y)))
 na_counts
 ```
+
+Median alcohol content and international bitterness unit by state
+```{r echo=TRUE}
+MedianbyState <- group_by(BrewsandBeers, State) %>%
+summarise(median_ABV = median(ABV, na.rm=TRUE),
+median_IBU = median(IBU, na.rm=TRUE))
+
+MedianbyState
+```
+
+State with the most alcohol content 
+```{r echo=TRUE}
+MaxABVState <- select(BrewsandBeers, State, ABV) %>%
+slice(which.max(ABV))
+
+MaxABVState
+```
+
+State with the most bitterness
+```{r echo=TRUE}
+MaxIBUState <- select(BrewsandBeers, State, IBU) %>%
+slice(which.max(IBU))
+
+MaxIBUState
+```
+Descriptive summary statistics
+```{r echo=TRUE}
+summary(BrewsandBeers$ABV)
+```
+
+
+
+
 
