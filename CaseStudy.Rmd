@@ -1,0 +1,41 @@
+---
+title: "Case Study"
+author: "Meredith Ludlow"
+date: "October 9, 2018"
+output: 
+  html_document:
+    keep_md: true
+---
+## Introduction
+Write intro here.
+
+I used the following R packages in the course of this analysis: plyr
+```{r echo=TRUE}
+library(plyr)
+```
+
+First, we will look at the number of breweries in each state. After we imported the brewery data, we created a table of the number of breweries that are located in each state. The table is shown below.
+```{r echo=TRUE}
+Breweries <- read.csv("Breweries.csv", header=TRUE)
+BreweriesPerState <- count(Breweries, "State")
+BreweriesPerState
+# Should we make a histogram?
+```
+
+After importing the beer data, we merged the two data sets together on the variable Brew_ID. This variable contains the specific ID numbers for each brewery. The first and last 6 lines of the merged data set are shown below.
+```{r echo=TRUE}
+Beers <- read.csv("Beers.csv", header=TRUE)
+colnames(Beers)[5] <- "Brew_ID"
+BrewsandBeers <- merge(Beers, Breweries, by = "Brew_ID")
+colnames(BrewsandBeers)[2] <- "BeerName"
+colnames(BrewsandBeers)[8] <- "BrewerieName"
+head(BrewsandBeers)
+tail(BrewsandBeers)
+```
+
+For each column in the merged data set, the number of missing data points are summed. The results are listed in the table below.
+```{r echo=TRUE}
+na_counts <- sapply(BrewsandBeers, function(y) sum(is.na(y)))
+na_counts
+```
+
