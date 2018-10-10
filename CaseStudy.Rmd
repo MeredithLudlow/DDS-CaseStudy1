@@ -70,7 +70,20 @@ Descriptive summary statistics
 summary(BrewsandBeers$ABV)
 ```
 
+There seems to be a correlation between variables. As the alcohol content increases, 
+so does the bitterness level
+```{r echo=TRUE}
+sp <- ggplot(BrewsandBeers, aes(x=ABV, y=IBU)) + 
+geom_point(pch = 21, size = 6, color="red") +
+geom_smooth(method="lm") 
 
+suppressWarnings(print(sp))
+```
+
+
+https://github.com/MeredithLudlow/DDS-CaseStudy1.git
+
+https://github.com/bbal20/DDS-CaseStudy1.git
 
 
 
