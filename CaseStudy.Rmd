@@ -47,10 +47,25 @@ MedianbyState <- group_by(BrewsandBeers, State) %>%
 summarise(median_ABV = median(ABV, na.rm=TRUE),
 median_IBU = median(IBU, na.rm=TRUE))
 
-MedianbyState
+bp_ABV <- ggplot(data=MedianbyState, aes(x=State, y=median_ABV, fill=State)) +
+  geom_bar(stat='identity', colour = 'black') +
+  coord_flip() + 
+  ggtitle("Median Alcohol Content by State") + 
+  theme(legend.position="none") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+bp_IBU <- ggplot(data=MedianbyState, aes(x=State, y=median_IBU, fill=State)) +
+  geom_bar(stat='identity', colour = 'black') +
+  coord_flip() + 
+  ggtitle("Median Bitterness Level by State") + 
+  theme(legend.position="none") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+bp_ABV
+bp_IBU
 ```
 
-State with the most alcohol content 
+The state of Colorado has the highest recorded alcohol content. 
 ```{r echo=TRUE}
 MaxABVState <- select(BrewsandBeers, State, ABV) %>%
 slice(which.max(ABV))
@@ -58,7 +73,8 @@ slice(which.max(ABV))
 MaxABVState
 ```
 
-State with the most bitterness
+The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon
+has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.
 ```{r echo=TRUE}
 MaxIBUState <- select(BrewsandBeers, State, IBU) %>%
 slice(which.max(IBU))
@@ -71,18 +87,27 @@ summary(BrewsandBeers$ABV)
 ```
 
 There seems to be a correlation between variables. As the alcohol content increases, 
-so does the bitterness level
+so does the bitterness level.
 ```{r echo=TRUE}
 sp <- ggplot(BrewsandBeers, aes(x=ABV, y=IBU)) + 
-geom_point(pch = 21, size = 6, color="red") +
-geom_smooth(method="lm") 
+  geom_point(pch = 21, size = 6, color="red") +
+  geom_smooth(method="lm") + 
+  ggtitle("Alcohol Content vs Bitterness Level") +
+  theme(plot.title = element_text(hjust = 0.5))
+  
 
 suppressWarnings(print(sp))
 ```
 
+Conculsion
+#Write conclusion here.
 
+
+
+Master Branch
 https://github.com/MeredithLudlow/DDS-CaseStudy1.git
 
+Forked Master Branch
 https://github.com/bbal20/DDS-CaseStudy1.git
 
 
