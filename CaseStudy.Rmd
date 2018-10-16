@@ -7,15 +7,16 @@ output:
     keep_md: true
 ---
 ### Introduction
-We analyzed two data sets, one containing information about breweries across the US and one containing information about types of beers, to look at the distrubution of breweries per state. We also focused on the international betterness unit (IBU) and alchohol level to see which states have the highest IBU and alchol content and if there is a correlation between the two variables.
+We analyzed two data sets, one containing information about breweries across the US and one containing information about types of beers, to look at the distrubution of breweries per state. We also focused on the international bitterness unit (IBU) and alchohol level to see which states have the highest IBU and alchol content and if there is a correlation between the two variables.
 </br>
 
-We used the following R packages in the course of this analysis: plyr, dplyr, and ggplot2.
+We used the following R packages in the course of this analysis: plyr, dplyr, stringr and ggplot2.
 ```{r echo=TRUE}
 library(plyr)
 library(dplyr)
 library(ggplot2)
 library(knitr)
+library(stringr)
 ```
 </br>
 
@@ -76,8 +77,8 @@ bp_IBU <- ggplot(data=MedianbyState, aes(x=State, y=median_IBU, fill=State)) +
   theme(legend.position="none") +
   theme(plot.title = element_text(hjust = 0.5))
 
-bp_ABV
-bp_IBU
+suppressWarnings(print(bp_ABV))
+suppressWarnings(print(bp_IBU))
 ```
 </br>
 
@@ -102,7 +103,7 @@ summary(BrewsandBeers$ABV)
 </br>
 
 
-There seems to be a general positive correlation between IBU and ABV. As the alcohol content increases, so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.
+Below is a scatterplot that plots ABV and IBU values. There seems to be a positive correlation between IBU and ABV. As the alcohol content increases, so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.
 ```{r echo=TRUE}
 sp <- ggplot(BrewsandBeers, aes(x=ABV, y=IBU)) + 
   geom_point(pch = 21, size = 2, color="red") +
@@ -115,9 +116,30 @@ suppressWarnings(print(sp))
 ```
 </br>
 
+We created an additional variable that captures the beer type from the string values found in the Style column. Ale and IPA are the most popular Beer types followed by APA, Lager and Stout. It would be interesting to better understand what area's of the country contribute to this popularity. Also, there may be more demand for beer styles that aren't being currently produced by local breweries. Deeper analysis is required to answer these questions and others. 
+```{r echo=TRUE}
+BrewsandBeers$StyleCategory <- word(BrewsandBeers$Style,-1)
 
-Conculsion
-#Write conclusion here.
+StyleCategory_Counts <- BrewsandBeers %>%
+group_by(StyleCategory) %>%
+summarise(count = n()) %>%
+arrange(desc(count))
+
+btp <- ggplot(data=StyleCategory_Counts, aes(x=StyleCategory, y=count, fill=StyleCategory)) + 
+geom_bar(stat='identity', colour = 'black') + 
+coord_flip() +
+ggtitle("Beer Type Counts") + ylab("Frequency") +
+theme(legend.position="none") +
+theme(plot.title = element_text(hjust = 0.5))
+
+suppressWarnings(print(btp))
+kable(head(StyleCategory_Counts,n=10))
+```
+
+
+
+##Conculsion
+In conclusion, the western territories seem to have the highest concentration of breweries led by California, Colorado, Oregon and Washington. It was shown above there seems to be a positive linear relationsip between the alchol content and bitterness level. As alcohol increses so does bitterness. This would suggest that the number of breweries is somewhat driven by the alcohol and bitterness levels in beers produced by these breweries (California and Oregon both have the highest recorded alcohol and bitterness respectively). Further analysis is required to answer other questions of interest like percent of total Beer styles produced by state/city sliced by albohol and bitterness values. 
 </br>
 
 
