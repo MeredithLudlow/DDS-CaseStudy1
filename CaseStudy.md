@@ -215,8 +215,7 @@ summary(BrewsandBeers$ABV)
 </br>
 
 
-There seems to be a correlation between variables. As the alcohol content increases, 
-so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.
+There seems to be a general positive correlation between IBU and ABV. As the alcohol content increases, so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.
 
 ```r
 sp <- ggplot(BrewsandBeers, aes(x=ABV, y=IBU)) + 

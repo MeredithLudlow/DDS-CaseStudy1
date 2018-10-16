@@ -497,7 +497,7 @@ kable(MaxABVState)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62</code></pre>
 <p></br></p>
-<p>There seems to be a correlation between variables. As the alcohol content increases, so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.</p>
+<p>There seems to be a general positive correlation between IBU and ABV. As the alcohol content increases, so does the bitterness level. The state of Oregon has the highest recorded bitterness level. This could also mean that Orgeon has one of the highest levels of alcohol content given there seems to be a correlation between bitterness and alcohol levels.</p>
 <pre class="r"><code>sp &lt;- ggplot(BrewsandBeers, aes(x=ABV, y=IBU)) + 
   geom_point(pch = 21, size = 2, color=&quot;red&quot;) +
   geom_smooth(method=&quot;lm&quot;) + 
