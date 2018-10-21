@@ -77,3 +77,5 @@ StyleCategory_Counts - Data frame that contains the number of each style of beer
 btp - Histogram of the number of each style of beer in descending order from the StyleCategory_Counts data set.  
 
 Link to Meredith Ludlow's YouTube video: https://www.youtube.com/watch?v=m68MuFXb5_g&t=1s  
+
+Link to Kito Patterson's Youtube video: https://youtu.be/8qAA2jaWMVo
