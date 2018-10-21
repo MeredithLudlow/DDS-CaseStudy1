@@ -60,7 +60,7 @@ BrewsandBeers$StyleCategory <- word(BrewsandBeers$Style,-1)
 ```
 
 
-Object Descriptions
+Object Descriptions  
 Breweries - Data frame that contains the data form the Brewery CSV file.  
 BreweriesPerState - Data frame that contains the number of breweries in each state.  
 BpS - Histogram that displays the number of breweries in each state using the BreweriesPerState data frame.  
