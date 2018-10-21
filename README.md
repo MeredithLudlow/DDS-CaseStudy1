@@ -20,31 +20,31 @@ Meredith Ludlow:
   Wrote the comments in the code chunks.  
   Wrote the READ.ME file.  
   
-Kito Patterson:
-  Wrote the code for questions 4 through 7.
-  Wrote the code to an additional question on interest not included in the Case Study deliverable
-  Wrote the Conclusion
-  Contributed to READ.ME file
+Kito Patterson:  
+  Wrote the code for questions 4 through 7.  
+  Wrote the code to an additional question on interest not included in the Case Study deliverable.  
+  Wrote the Conclusion.  
+  Contributed to READ.ME file.  
 
-Codebook:  
+Codebook:    
 
-#Raw Datasets 
-Beers.csv: Contains a list of 2410 US craft beers 
-Breweries.csv: Contains a list of 558 US breweries
+#Raw Datasets   
+Beers.csv: Contains a list of 2410 US craft beers   
+Breweries.csv: Contains a list of 558 US breweries  
 
-##Tidy Data Table Process
-Altered column names (Beers):
-  Brewery_ID (original) -> Brew_ID
+##Tidy Data Table Process  
+Altered column names (Beers):  
+  Brewery_ID (original) -> Brew_ID  
 
-BrewsandBeers dataframe created by merging both Beers and Breweries 
-dataframes ON Brew_ID.
+BrewsandBeers dataframe created by merging both Beers and Breweries   
+dataframes ON Brew_ID.  
 
-Altered column names (BrewsandBeers):
-  Name (original) -> BeerName
-  Name (original) -> BrewerieName
+Altered column names (BrewsandBeers):  
+  Name (original) -> BeerName  
+  Name (original) -> BrewerieName  
   
-Additional Tidy Column / Feature Creation
-1.) StyleCategory - extracts last word from 'Style' column in BrewsandBeers dataframe.
+Additional Tidy Column / Feature Creation  
+1.) StyleCategory - extracts last word from 'Style' column in BrewsandBeers dataframe.  
 
 Supporting R code
 ```{r echo=TRUE}
