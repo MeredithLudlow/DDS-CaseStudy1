@@ -16,11 +16,51 @@ CaseStudy_files - A file containing the output graphs from the RMD file.
 Contributions to the project:  
 Meredith Ludlow:    
   Wrote the code for the first three questions.  
-  Wrote the beginning paragraph and the answers and explanations to the individual questions.   
+  Wrote the Introduction and the answers and explanations to the individual questions.   
   Wrote the comments in the code chunks.  
   Wrote the READ.ME file.  
+  
+Kito Patterson:
+  Wrote the code for questions 4 through 7.
+  Wrote the code to an additional question on interest not included in the Case Study deliverable
+  Wrote the Conclusion
+  Contributed to READ.ME file
 
 Codebook:  
+
+#Raw Datasets 
+Beers.csv: Contains a list of 2410 US craft beers 
+Breweries.csv: Contains a list of 558 US breweries
+
+##Tidy Data Table Process
+Altered column names (Beers):
+  Brewery_ID (original) -> Brew_ID
+
+BrewsandBeers dataframe created by merging both Beers and Breweries 
+dataframes ON Brew_ID.
+
+Altered column names (BrewsandBeers):
+  Name (original) -> BeerName
+  Name (original) -> BrewerieName
+  
+Additional Tidy Column / Feature Creation
+1.) StyleCategory - extracts last word from 'Style' column in BrewsandBeers dataframe.
+
+Supporting R code
+```{r echo=TRUE}
+# Rename Brewerie_ID in Beers DF
+colnames(Beers)[5] <- "Brew_ID"
+# Merge data sets
+BrewsandBeers <- merge(Beers, Breweries, by = "Brew_ID")
+# Rename columns
+colnames(BrewsandBeers)[2] <- "BeerName"
+colnames(BrewsandBeers)[8] <- "BrewerieName"
+# Create new column from the information in the Style variable
+BrewsandBeers$StyleCategory <- word(BrewsandBeers$Style,-1)
+```
+
+
+Object Descriptions  
 Breweries - Data frame that contains the data form the Brewery CSV file.  
 BreweriesPerState - Data frame that contains the number of breweries in each state.  
 BpS - Histogram that displays the number of breweries in each state using the BreweriesPerState data frame.  
